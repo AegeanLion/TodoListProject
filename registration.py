@@ -2,29 +2,25 @@ import hashlib
 import re
 
 email_validation_pattern = ""
-def signp():
+def signp(email, password, confirm_password):
     real_email = False
     while not real_email:
-        email_input = input("Enter Valid Email Address: ")
-        if re.match(email_validation_pattern, email_input):
+        if re.match(email_validation_pattern, email):
             real_email = True
         else:
-            print("\nPlease Enter a Valid Email Address\n")
-
-    password = input("\nEnter Password")
-    confirm_password = input("\nConfirm Password")
+            return "Please Enter a Valid Email Address"
 
     if confirm_password == password:
-        email_encode = email_input.encode()
+        email_encode = email.encode()
         password_encode = confirm_password.encode()
 
         password_hash = hashlib.sha256(password_encode).hexdigest()
         email_hash = hashlib.sha256(email_encode).hexdigest()
 
         with open("credentials.txt", "w") as file:
-            file.write(email_encode + ";" + password_encode)
+            file.write(email_encode + ";" + password_encode + "\n")
         file.close()
-
-        print("\nUser Registered Successfully")
+        
+        return "User Registered Successfully"
     else:
-        print("\nPasswords do not match!")
+        return "Passwords do not match!"
