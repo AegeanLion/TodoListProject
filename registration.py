@@ -24,3 +24,6 @@ def signp(email, password, confirm_password):
         return "User Registered Successfully"
     else:
         return "Passwords do not match!"
+
+
+#todo: make the regex valid email identification work
