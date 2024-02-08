@@ -1,6 +1,8 @@
+#imports
 import hashlib
 import re
 
+#this asks user for a valid email address
 email_validation_pattern = ""
 def signp(email, password, confirm_password):
     real_email = False
